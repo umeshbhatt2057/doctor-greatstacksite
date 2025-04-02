@@ -16,14 +16,18 @@ const Login = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault()
 
+    
+    console.log( state)
     try {
 
-      if (state === 'Sign up') {
-        const { data } = await axios.post(backendUrl + '/api/user/register', { name, password, email })
+      if (state === 'Sign Up') {
+        const { data } = await axios.post('http://localhost:4000/api/user/register', { name, password, email })
         if (data.success) {
           localStorage.setItem('token', data.token)
+          console.log(data)
           setToken(data.token)
         } else {
+          console.log(data)
           toast.error(data.message)
         }
       } else {
